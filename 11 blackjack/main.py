@@ -1,5 +1,6 @@
 from art import logo
 import random
+from replit import clear
 
 cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 
@@ -85,7 +86,6 @@ def calculate_score(hand):
             hand.remove(11)
             hand.append(1)
             calculate_score(hand)
-        print ("Bust")
     return sum(hand) 
 
 def play_game():
@@ -138,6 +138,7 @@ def play_game():
 
 
 while input("Would you like to play a game of Blackjack? 'y' or 'n'? ") == 'y':
+    clear()
     print(logo)
     play_game()
 
