@@ -23,8 +23,8 @@ operations = {
 "/":divide
 }
 
-num1 = int(input("What is the first number?: "))
-num2 = int(input("What is the second number?: "))
+num1 = float(input("What is the first number?: "))
+num2 = float(input("What is the second number?: "))
 
 
 operation_symbol = input ("Pick an operation: ")
@@ -41,7 +41,7 @@ while continue_loop is True:
         continue_loop = False
     else:
         operation_symbol = input ("Pick another operation: ")
-        num3 = int(input("Pick another number: "))
+        num3 = float(input("Pick another number: "))
         operation = operations[operation_symbol]
         new_answer = operation(answer,num3)
         print (f"{answer} {operation_symbol} {num3} = {new_answer}")
