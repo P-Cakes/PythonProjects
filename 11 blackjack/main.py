@@ -55,79 +55,69 @@ def deal_cards():
     user_cards.append(deal_card())
     computer_cards.append(deal_card())
     computer_cards.append(deal_card())
-    #hidden_card = deal_card()
-    print (f"user has {user_cards} and computer has {computer_cards} and a hidden card")
-    user_point = calculate_score(user_cards)
-    computer_point = calculate_score(computer_cards)
-    print (f"user has {user_point} points vs computer's {computer_point} ")
     return user_cards, computer_cards
 
 
 #Hint 6: Create a function called calculate_score() that takes a List of cards as input 
 #and returns the score. 
 #Look up the sum() function to help you do this.
+
+
+def compare(user_score, computer_score):
+    if user_score == 0 or user_score == 21:
+        print("you win")
+    elif user_score > 21:
+        print("You bust")
+    elif user_score < 21 and computer_score > 21:
+        print ("Dealer Busts")
+    else:
+        print (f"You lose with {user_score} vs {computer_score}")
+
 def calculate_score(hand):
     """Return score of inputted hand(list) of cards"""
     hand_score = 0
     #check for blackjack at start
     if hand == [10,11] or hand == [11,10]:
+        print("Blackjack")
         return 0
-    
-    for card in hand:
-        hand_score += card
-        if hand_score > 21:
-            if 11 in hand:
-                print ("ace")
-            print ("Bust")
-    return hand_score 
+    if sum(hand) > 21: 
+        if 11 in hand:
+            hand.remove(11)
+            hand.append(1)
+            calculate_score(hand)
+        print ("Bust")
+    return sum(hand) 
 
-
-
-def play_blackjack():
-    print(logo)
-    user_cards , computer_cards = deal_cards()
-    user_playing = True
+def play_game():
+    is_game_over = False
+    user_cards, computer_cards = deal_cards()
     user_score = calculate_score(user_cards)
-    while user_playing is True and user_score < 22:
-        if user_score == 21:
-            print ("Blackjack!")
-        elif input(f"You have {user_cards}. Your score is {user_score}. Do you want to hit?\n") == 'n':
-            user_playing = False
-        else:
-            user_cards.append(deal_card())
-            user_score = calculate_score(user_cards)
-
     computer_score = calculate_score(computer_cards)
-    if computer_score == 0:
-        print ("Dealer has blackjack!")
-        if input("Keep playing? 'y' or 'n' \n") == 'y':
-                play_blackjack()
-    if computer_score > user_score and computer_score < 22:
-        print ('computer wins')
-    while computer_score < 16:
-        print(f"Computer has {computer_score} points and must draw.")
-        computer_cards.append(deal_card())
-        print (f"computer has {computer_cards}")
-        computer_score = calculate_score(computer_cards)
-    if computer_score > user_score and computer_score < 22:
-        print ('computer wins appending')
-    elif computer_score > 21:
-        print ('computer busts')
-    elif computer_score == user_score:
-        print ('Draw')
-    else: 
-        print (f"computer score is {computer_score}")
-        if computer_score > user_score:
-            print ("Computer wins!")
+    print (f"User has {user_cards} with score {user_score}.")
+    print (f"Dealer has {computer_cards[0]} and a hidden card")
+
+    while is_game_over is False:
+        if user_score == 0 or user_score > 21:
+            is_game_over = True
+        elif input("Hit?") == 'y':
+            new_card =deal_card()
+            user_cards.append(new_card)
+            user_score = calculate_score(user_cards)
+            print(f"You drew a {new_card}.  Your hand is now {user_cards} with score {user_score}")
         else:
-            print ("You win!")
-    if input("Keep playing? 'y' or 'n' \n") == 'y':
-        play_blackjack()
-
-           
-
-
-    
+            print("Dealer's turn.")
+            print(f"Dealer has {computer_cards} with {computer_score} points.")
+            if computer_score > user_score and (computer_score == 0 or computer_score <= 21):
+                print ("Dealer Wins")
+            elif computer_score > 21:
+                print("Dealer Busts")
+            while computer_score < 17:
+                new_card =deal_card()
+                computer_cards.append(new_card)
+                computer_score = calculate_score(computer_cards)
+                print(f"Dealer drew a {new_card}.  Dealer hand is now {computer_cards} with score {computer_score}")
+            is_game_over = True
+            compare(user_score, computer_score)
     
 
 #Hint 7: Inside calculate_score() check for a blackjack (a hand with only 2 cards: ace + 10) and return 0 instead of the actual score. 0 will represent a blackjack in our game.
@@ -146,5 +136,8 @@ def play_blackjack():
 
 #Hint 14: Ask the user if they want to restart the game. If they answer yes, clear the console and start a new game of blackjack and show the logo from art.py.
 
-play_blackjack()
+
+while input("Would you like to play a game of Blackjack? 'y' or 'n'? ") == 'y':
+    print(logo)
+    play_game()
 
