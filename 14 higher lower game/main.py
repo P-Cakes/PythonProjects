@@ -1,6 +1,7 @@
 
 import random
-import art
+from art import logo as logo
+from art import vs as vs
 import gamedata
 from replit import clear
 
@@ -20,22 +21,27 @@ from replit import clear
 
 def play_game():
     clear()
+    print (logo)
     score = 0
     continue_game = False
     if input("Do you want to play? 'y' or 'n'") == 'y':
         continue_game = True
-    while continue_game is True:
         compare= (random.randint(0,len(gamedata.data)))
         compare2=(random.randint(0,len(gamedata.data)))
-        print (f"{gamedata.data[compare]},{gamedata.data[compare2]}")
+    while continue_game is True:
+        compare= compare2
+        compare2=(random.randint(0,len(gamedata.data)))
         print (f"Option A: {gamedata.data[compare]['name']} is a {gamedata.data[compare]['description']} from {gamedata.data[compare]['country']}")
+        print (vs)
         print (f"Option B: {gamedata.data[compare2]['name']} is a {gamedata.data[compare2]['description']} from {gamedata.data[compare2]['country']}")
-        choice = input(f"{gamedata.data[compare]['name']} has {gamedata.data[compare]['follower_count']} followers. \n Does {gamedata.data[compare2]['name']} have more?\n Who has more followers? 'a' or 'b'?")
+        choice = input(f"{gamedata.data[compare]['name']} has {gamedata.data[compare]['follower_count']} followers. Does {gamedata.data[compare2]['name']} have more?\nWho has more followers? 'a' or 'b'?")
         if choice == 'a' and gamedata.data[compare]['follower_count'] > gamedata.data[compare2]['follower_count']:
             score += 1
+            clear()
             print(f"Correct.  You now have {score} points.")
         elif choice == 'b' and gamedata.data[compare]['follower_count'] < gamedata.data[compare2]['follower_count']:
             score += 1
+            clear()
             print(f"Correct.  You now have {score} points.")
         else:
             continue_game = False
