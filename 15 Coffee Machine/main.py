@@ -40,6 +40,8 @@ def reporting():
     print (f"Money: ${resources['money']}")
 
 def check_resources(drink):
+    """Check whether there are enough resources to make the input drink.
+    If there aren't, print all missing ingredients."""
     issue = ''
     water_cost = MENU[drink]['ingredients']['water']
     if water_cost > resources['water']:
@@ -58,6 +60,8 @@ def check_resources(drink):
         return False
     
 def spend_resources(drink):
+    """Helper function to spend ingredients from resources, based 
+    on creating the input drink from the menu."""
     water_cost = MENU[drink]['ingredients']['water']
     coffee_cost = MENU[drink]['ingredients']['coffee']
     milk_cost = MENU[drink]['ingredients']['milk']
@@ -67,6 +71,8 @@ def spend_resources(drink):
     
 
 def process_payment (drink):
+    """Helper function to take payment, check if it's enough, 
+    check whether there's an overpayment, and modify our resources money."""
     price_to_pay = MENU[drink]["cost"]
     wallet = 0
     quarters = int(input("How many quarters?: "))
