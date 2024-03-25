@@ -13,6 +13,13 @@ class QuizBrain:
         Else return False"""
         return len(self.question_list) > self.question_number
 
+    def check_answer(self, user_answer, correct_answer):
+        if user_answer.lower() == correct_answer.lower():
+            print ("That's correct!")
+            self.score += 1
+        else:
+            print ("That's wrong.")
+        print (f"The correct answer was {correct_answer}.")
 
     def next_question(self):
         current_question = self.question_list[self.question_number]
@@ -20,11 +27,7 @@ class QuizBrain:
         #question number starts at 1, instead of 0, for Q1
         self.question_number += 1
         user_answer = input(f"Q{self.question_number}: {current_question.text} (True/False)")
-        if user_answer == current_question.answer:
-            self.score += 1
-            print ("Correct")
-        else:
-            print ("Incorrect")
+        self.check_answer(user_answer, current_question.answer)
 
 
 
