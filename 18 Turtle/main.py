@@ -43,9 +43,10 @@ def draw_shape(turtle, num_sides):
 
 directions = [90,180,270,0]
 colors = ['Red','Green','Blue','Orange','LawnGreen','LimeGreen','Teal','Coral']
-timmy_the_turtle.pensize(15)
+timmy_the_turtle.pensize(1)
 timmy_the_turtle.speed('fastest')
 
+"""
 for shape in range(3,10):
     draw_shape(timmy_the_turtle,shape)
     timmy_the_turtle.color(random_color())
@@ -54,7 +55,15 @@ for i in range(200):
     timmy_the_turtle.forward(20)
     timmy_the_turtle.setheading(random.choice(directions))
     timmy_the_turtle.color(random_color())
+"""
 
+def draw_spirograph(turtle, size):
+    for i in range(int(360/size)):
+        turtle.circle(100)
+        turtle.color(random_color())
+        turtle.right(size)
+
+draw_spirograph(timmy_the_turtle,5)
 
 screen = Screen()
 screen.exitonclick()
