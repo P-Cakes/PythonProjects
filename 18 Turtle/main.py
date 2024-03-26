@@ -63,8 +63,34 @@ def draw_spirograph(turtle, size):
         turtle.color(random_color())
         turtle.right(size)
 
-draw_spirograph(timmy_the_turtle,5)
+#draw_spirograph(timmy_the_turtle,5)
+
+def move_timmy_forward():
+    timmy_the_turtle.forward(10)
+
+def move_timmy_up():
+    timmy_the_turtle.setheading(90)
+    timmy_the_turtle.forward(10)
+
+def move_timmy_down():
+    timmy_the_turtle.setheading(270)
+    timmy_the_turtle.forward(10)
+
+def move_timmy_left():
+    timmy_the_turtle.setheading(180)
+    timmy_the_turtle.forward(10)
+
+def move_timmy_right():
+    timmy_the_turtle.setheading(0)
+    timmy_the_turtle.forward(10)
+ 
 
 screen = Screen()
+screen.listen()
+screen.onkey(key="space", fun=move_timmy_forward)
+screen.onkey(key="w",fun=move_timmy_up)
+screen.onkey(key="a",fun=move_timmy_left)
+screen.onkey(key="s",fun=move_timmy_down)
+screen.onkey(key="d",fun=move_timmy_right)
 screen.exitonclick()
 
