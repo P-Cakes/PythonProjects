@@ -17,7 +17,8 @@ class Snake:
     def add_segment(self, starting_x, starting_y):
         new_segment = Turtle("square")
         new_segment.color("white")
-        # new_segment.penup()
+        new_segment.penup()
+        new_segment.speed("fastest")
         new_segment.goto(x=starting_x, y=starting_y)
         self.segments.append(new_segment)
 
@@ -34,6 +35,9 @@ class Snake:
             y_pos = position[1]
             print(f"{x_pos} {y_pos}")
             self.add_segment(starting_x=x_pos, starting_y=y_pos)
+
+    def extend(self):
+        self.add_segment(self.segments[-1].xcor(), self.segments[-1].ycor())
 
     def up(self):
         if self.head.heading() != DOWN:
