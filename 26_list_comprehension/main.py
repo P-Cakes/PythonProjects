@@ -23,6 +23,34 @@ for (index, row) in student_data_frame.iterrows():
 #TODO 1. Create a dictionary in this format:
 #{"A": "Alfa", "B": "Bravo"}
 
-
+# nato_dict = {}
+# bad_nato_dict = {}
+nato_file = pandas.read_csv("nato_phonetic_alphabet.csv")
+nato_dict = {row.letter: row.code for (index, row) in nato_file.iterrows()}
+bad_nato = {row.letter:row.bad for (index,row) in nato_file.iterrows()}
+print (nato_dict)
+print (bad_nato)
+# for (index, row) in nato_file.iterrows():
+#     nato_dict.append(yo)
+#     print (row.letter)
+#     print (row.code)
+#     print (row.bad)
 #TODO 2. Create a list of the phonetic code words from a word that the user inputs.
 
+def get_nato():
+    word = input('Input word you want nato phonetic letters for: ').upper()
+    style = input(f"Word is {word}, do you want 'nato' or 'bad' letters?")
+    while style not in ['nato','bad','exit']:
+        style = input (f"Word is {word}, do you want 'nato' or 'bad' letters? Or 'exit'.")
+    if style == 'exit':
+        return 'exit'
+    elif style == 'nato':
+        output = [nato_dict[letter] for letter in word]
+    else:
+        output = [bad_nato[letter] for letter in word]
+    print (output)
+    go_again = input("Go again? 'yes', 'no': ")
+    if go_again == 'yes':
+        get_nato()
+
+get_nato()
