@@ -1,15 +1,15 @@
 import tkinter
 
-# window = tkinter.Tk()
-#
-# window.title("My First GUI Program")
-# window.minsize(width=500, height=300)
-#
-# # Label
-# my_label = tkinter.Label(text="I am a Label", font=("Arial", 24, "bold"))
-# my_label.pack()
-# second_label = tkinter.Label(text="Second")
-# second_label.pack(side="left")
+window = tkinter.Tk()
+
+window.title("My First GUI Program")
+window.minsize(width=500, height=300)
+
+# Label
+my_label = tkinter.Label(text="I am a Label", font=("Arial", 24, "bold"))
+my_label.pack()
+second_label = tkinter.Label(text="Second")
+second_label.pack(side="left")
 
 
 # Unlimited Arguments:
@@ -47,5 +47,32 @@ print(my_car)
 print(my_car.model)
 print(my_car.num_seats)
 
-# # This line is always at the end of the code
-# window.mainloop()
+
+
+def all_aboard(a, *args, **kw):
+    print(a, args, kw)
+
+all_aboard(4, 7, 3, 0, x=10, y=64)
+
+
+def button_clicked():
+    print ("I got clicked")
+    my_label.config(text = "Button was clicked")
+
+button = tkinter.Button(text = "Click me", command = button_clicked)
+button.pack()
+
+
+
+
+
+
+
+
+
+
+
+
+
+# This line is always at the end of the code
+window.mainloop()
