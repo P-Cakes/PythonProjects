@@ -54,16 +54,19 @@ def all_aboard(a, *args, **kw):
 
 all_aboard(4, 7, 3, 0, x=10, y=64)
 
+# Button
 
 def button_clicked():
     print ("I got clicked")
-    my_label.config(text = "Button was clicked")
+    my_label.config(text = input.get())
 
 button = tkinter.Button(text = "Click me", command = button_clicked)
 button.pack()
 
-
-
+# Entry
+input = tkinter.Entry(width=10)
+input.pack()
+input.get()
 
 
 
