@@ -38,17 +38,23 @@ print (bad_nato)
 #TODO 2. Create a list of the phonetic code words from a word that the user inputs.
 
 def get_nato():
-    word = input('Input word you want nato phonetic letters for: ').upper()
+    word = input('Input word you want phonetic letters for: ').upper()
     style = input(f"Word is {word}, do you want 'nato' or 'bad' letters?")
     while style not in ['nato','bad','exit']:
         style = input (f"Word is {word}, do you want 'nato' or 'bad' letters? Or 'exit'.")
     if style == 'exit':
+        print ("Exiting")
         return 'exit'
-    elif style == 'nato':
-        output = [nato_dict[letter] for letter in word]
+    try:
+        if style == 'nato':
+            output = [nato_dict[letter] for letter in word]
+        else:
+            output = [bad_nato[letter] for letter in word]
+    except KeyError:
+        print("Sorry, only letters in the input word please.")
+        get_nato()
     else:
-        output = [bad_nato[letter] for letter in word]
-    print (output)
+        print (output)
     go_again = input("Go again? 'yes', 'no': ")
     if go_again == 'yes':
         get_nato()
