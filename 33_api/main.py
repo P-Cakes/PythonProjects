@@ -66,3 +66,9 @@ if int(sunset_hour) < time_now.hour < int(sunrise_hour):
 # import os
 # import ssl
 
+#Improve further by changing the ifs to a function
+# automate the function triggering
+# update function to send emails
+
+
+
