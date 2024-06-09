@@ -17,7 +17,9 @@ def generate_password():
     shuffle(password_list)
 
     password = "".join(password_list)
+    # Insert the generated password into the password entry box
     password_entry.insert(0, password)
+    # This copies the password to your clipboard so you can put it into the website
     pyperclip.copy(password)
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 
