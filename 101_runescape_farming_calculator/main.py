@@ -22,6 +22,7 @@ def fetch_data():
 # hard coding so that I don't constantly ping the api while testing
 farming_level = 99
 current_farming_exp = 14693077
+goal_exp = 20000000
 
 
 def set_goal():
@@ -85,7 +86,7 @@ def fruit_tree_patches_available():
 
 def runs_to_goal():
     """ Calculate the number of runs needed to reach the goal. """
-    goal_exp = set_goal()
+    global goal_exp
     tree_run_exp = trees[highest_tree_run()]['exp']
     fruit_tree_run_exp = fruit_trees[highest_fruit_tree_run()]['exp']
     tree_patches = tree_patches_available()
@@ -98,7 +99,28 @@ def runs_to_goal():
     print(f"Your current exp is {current_farming_exp} so you have {exp_to_goal} exp remaining until your goal of {goal_exp}.")
     print(f"You need to do {runs} runs to reach your goal.")
 
-runs_to_goal()
+
+def days_to_goal():
+    """ Calculate the number of days needed to reach the goal. """
+    global goal_exp
+    tree_patches = tree_patches_available()
+    fruit_tree_patches = fruit_tree_patches_available()
+    tree_run_exp = trees[highest_tree_run()]['exp'] * tree_patches
+    fruit_tree_run_exp = fruit_trees[highest_fruit_tree_run()]['exp'] * fruit_tree_patches
+    daily_tree_runs = int(input("Enter the number of tree runs you want to do per day: "))
+    daily_fruit_tree_runs = int(input("Enter the number of fruit tree runs you want to do per day: "))
+    daily_tree_exp = tree_run_exp * daily_tree_runs
+    daily_fruit_tree_exp = fruit_tree_run_exp * daily_fruit_tree_runs
+    daily_exp = daily_tree_exp + daily_fruit_tree_exp
+    exp_to_goal = goal_exp - current_farming_exp
+    days = math.ceil(exp_to_goal / daily_exp)
+    print (f"Your current exp is {current_farming_exp} so you have {exp_to_goal} exp remaining until your goal of {goal_exp}.")
+    print(f"You can plant {tree_patches} {highest_tree_run()} trees and {fruit_tree_patches} {highest_fruit_tree_run()} trees per run.")
+    print(f"This will give you {tree_run_exp} exp per tree run and {fruit_tree_run_exp} exp per fruit tree run.")
+    print(f"This will give you {daily_exp} exp per day.")
+    print(f"You need to do {daily_tree_runs} {highest_tree_run()} tree runs and {daily_fruit_tree_runs} {highest_fruit_tree_run()} fruit tree runs per day for {days} days to reach your goal.")
+
+days_to_goal()
 # Goals 2:
 # Add a GUI
 
