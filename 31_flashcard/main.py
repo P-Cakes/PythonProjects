@@ -2,6 +2,13 @@ from tkinter import *
 from random import choice
 import pandas
 
+# import unittest
+# class TestAssertions(unittest.TestCase):
+#     def test_equals(self):
+#         self.assertEqual(1, 1)
+#         self.assertEqual("one string","one string")
+
+
 
 # ---------------------------- CONSTANTS ------------------------------- #
 BACKGROUND_COLOR = "#B1DDC6"
@@ -73,5 +80,9 @@ yes_button.grid(row = 1, column = 1)
 
 next_card()
 
+# if __name__ == "__main__":
+#     unittest.main()
 
 window.mainloop()
+
+
