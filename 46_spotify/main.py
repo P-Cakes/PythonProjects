@@ -14,6 +14,8 @@ with open('spotify_cred.txt', 'r') as f:
         if line.strip():  # ignore empty lines
             key, value = line.strip().split('=', 1)
             os.environ[key] = value
+            # client_id
+            # client_secret
 
 target_date = input("Which year do you want to travel to? Type the date in this format YYYY-MM-DD: ")
 # check that the target date is in the correct format
@@ -34,4 +36,4 @@ soup = BeautifulSoup(data, "html.parser")
 
 song_names_spans = soup.select("li ul li h3")
 song_names = [song.getText().strip() for song in song_names_spans]
-print (song_names)
+print(song_names)
