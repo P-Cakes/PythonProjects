@@ -7,3 +7,4 @@ __pycache__/
 /46_spotify/spotify_cred.txt
 36_stocks/api_key.txt
 /37_habit/user_param.txt
+38_workout/api.txt
